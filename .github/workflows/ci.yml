@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  rust:
+    name: Rust
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        shell: bash
+        working-directory: nebula-core
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install Rust
+        run: rustup toolchain install 1.85.0 --profile minimal --component rustfmt --no-self-update
+      - name: Check formatting
+        run: cargo +1.85.0 fmt --check
+      - name: Check build
+        run: cargo +1.85.0 check --locked
+
+  go:
+    name: Go
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        shell: bash
+        working-directory: nebula-go
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version-file: nebula-go/go.mod
+          cache: false
+      - name: Check formatting
+        run: |
+          gofmt_diff="$(gofmt -d .)"
+          if [ -n "$gofmt_diff" ]; then
+            printf '%s\n' "$gofmt_diff"
+            exit 1
+          fi
+      - name: Build
+        run: go build ./...

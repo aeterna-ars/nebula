@@ -2,5 +2,9 @@
 name = "nebula-rs"
 version = "0.1.0"
 edition = "2024"
+rust-version = "1.85"
+description = "VPN protocol project focused on traffic masking and efficient packet processing"
+repository = "https://github.com/aeterna-ars/nebula"
+license-file = "../LICENSE"
 
 [dependencies]
