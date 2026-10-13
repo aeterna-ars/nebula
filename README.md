@@ -1,43 +1,5 @@
-# Nebula
+Project Status: Suspended Due to Institutional Gatekeeping
 
-Nebula is a VPN protocol project focused on traffic masking and high-performance
-packet processing. Its planned architecture combines a userspace handshake with
-a kernel-space data plane.
+Development of the Nebula protocol has been temporarily suspended due to a lack of funding. The project was conceived as a high-performance alternative to outdated censorship-circumvention tools, designed to operate five times faster than existing solutions by leveraging a system-level core.
 
-**Status: early development.**
-
-## Design direction
-
-The project has two main goals:
-
-- **Traffic masking:** make VPN traffic harder to identify and filter.
-- **Efficient packet processing:** use a kernel-space data plane to handle traffic
-  once a session has been established.
-
-The handshake will run in userspace.
-
-## Repository structure
-
-- [nebula-core/](nebula-core/) — Rust crate, currently named `nebula-rs`.
-- [nebula-go/](nebula-go/) — Go package, currently named `nebula_go`.
-
-## Development
-
-Requirements: Rust 1.85+ (edition 2024) and Go 1.24.4+.
-
-Check the build:
-
-```sh
-(cd nebula-core && cargo check --locked)
-(cd nebula-go && go build ./...)
-```
-
-## Contributing
-
-Protocol design discussions, focused implementations, and test cases are welcome.
-Please discuss substantial architectural changes in an issue before implementing
-them.
-
-## License
-
-See [LICENSE](LICENSE) for the GNU General Public License, version 3.
+Unfortunately, this repository has become a prime example of the bureaucracy and lack of transparency surrounding the allocation of U.S. government grants—specifically those administered by the Open Technology Fund. While millions of taxpayer dollars are funneled over the years to a closed circle of contractors to maintain inefficient applications written in Dart, innovative system-level solutions from independent developers are completely ignored by the fund.
